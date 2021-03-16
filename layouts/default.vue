@@ -1,7 +1,20 @@
 <template>
   <div>
+
+<!--    <NewPreloader/>-->
+<!--    <AlertMessage/>-->
+
     <Navbar/>
+
+<!--    <p class="span-shadow">-->
+<!--      <span class="btn-hover-effect square-out"  >ЭФФЕКТ 1</span>-->
+<!--      <span class="btn-hover-effect shadow-live" >ЭФФЕКТ 2</span>-->
+<!--      <span class="btn-hover-effect square-in"   >ЭФФЕКТ 3</span>-->
+<!--      <span class="btn-hover-effect square-list" >ЭФФЕКТ 4</span>-->
+<!--    </p>-->
+
     <Nuxt/>
+
   </div>
 </template>
 

@@ -11,10 +11,11 @@
 
       <!---- INPUT ----->
       <div class="col-xs-8">
+        <div class="form-input-error-box" ></div>
         <input v-if="_event == 'change'"
-            v-model="model[name]"  :type="type" :placeholder="title" @change="emitValue" :required="required" >
+            v-model="model[name]"  :type="type" :placeholder="title" @change="emitValue($event)" :required="required" >
         <input v-else
-            v-model="model[name]"  :type="type" :placeholder="title" @input="emitValue" :required="required" >
+            v-model="model[name]"  :type="type" :placeholder="title" @input="emitValue($event)" :required="required" >
       </div>
     </div>
   </div>
@@ -56,10 +57,10 @@ computed: {
 },
 
 methods : {
-    emitValue() {
+    emitValue(event) {
        const name  = this.name;
        const value = this.model[name];
-       this.$emit('input', { name, value });
+       this.$emit('input', { name, value, event });
     },
 },
 
@@ -67,5 +68,8 @@ methods : {
 </script>
 
 <style scoped>
-
+  .form-input-error-box {
+     color: red;
+     font-style: italic;
+  }
 </style>

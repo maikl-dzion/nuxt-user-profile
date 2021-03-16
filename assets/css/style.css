@@ -3101,3 +3101,43 @@ h3.blog-title::after{
 	background: #296dc1;
 	margin-top: 100px;
 }
+
+
+.span-shadow {text-align:center}
+.span-shadow .btn-hover-effect {
+  display: inline-block;
+  margin: 5px;
+  padding: 7px 15px;
+  cursor: pointer;
+  border-radius: 0px;
+  transition: .2s linear;
+  color: white;
+  background:#337ab7;
+}
+
+.span-shadow .square-out {background:#3A2F28}
+.span-shadow .square-out:hover {
+  box-shadow: 0 0 0 2px white, 0 0 0 4px #3A2F28;
+}
+
+.span-shadow .shadow-live {background:#C1F1E4}
+.span-shadow .shadow-live:hover {
+  box-shadow: 200px 0 0 0 rgba(0,0,0,.3) inset;
+}
+
+.span-shadow .square-in {background:#D2973D}
+.span-shadow .square-in:hover {
+  box-shadow: 0 0 0 2px #D2973D inset, 0 0 0 4px white inset;
+}
+
+.span-shadow .square-list {
+  background: #C76637;
+  position: relative;
+  top: 0;
+  left: 0;
+}
+.span-shadow .square-list:hover {
+  box-shadow: 2px 2px white, 4px 4px #C76637;
+  top: -4px;
+  left: -4px;
+}

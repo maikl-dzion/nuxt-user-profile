@@ -15,9 +15,21 @@
 <!--                   style="width:250px;display:block; color:green; margin: -19px 0px 10px 0px; border-bottom:1px greenyellow solid"-->
 <!--      >Перейти на страницу авторизации</router-link>-->
 
+<!--      <p class="span-shadow">-->
+<!--        <span class="btn-hover-effect square-out"  >ЭФФЕКТ 1</span>-->
+<!--        <span class="btn-hover-effect shadow-live" >ЭФФЕКТ 2</span>-->
+<!--        <span class="btn-hover-effect square-in"   >ЭФФЕКТ 3</span>-->
+<!--        <span class="btn-hover-effect square-list" >ЭФФЕКТ 4</span>-->
+<!--      </p>-->
+
+<!--      <p class="span-shadow" style="border: 0px red solid; width: 220px; padding:0px; margin-bottom:10px;" >-->
+<!--          <span  class="btn-hover-effect square-list"-->
+<!--                 style="width: 100%; margin:0px; background:#337ab7; border: 0px red solid;">Добавить объявление</span>-->
+<!--      </p>-->
+
       <h3 class="sidebar-title" style="margin-top:10px" >Регистрация</h3><hr/>
 
-      <pre>{{user}}</pre>
+<!--      <pre>{{user}}</pre>-->
 
       <div class="col-md-12 col-xs-12">
         <div class="faq-form form-style" style="border:0px red solid; margin-bottom:20px;">
@@ -44,7 +56,7 @@
 
               <FormInputRow
                 name="repeat_password" title="Повторить пароль"
-                :model="user" :param="{type: 'text', required: true }"
+                :model="user" :param="{ type: 'text', required: true, event : 'change' }"
                 @input="getInput" />
 
               <FormInputRow
@@ -55,7 +67,7 @@
                 name="phone" title="Телефон"
                 :model="user" @input="getInput" />
 
-              <div class="col-xs-12"> <hr/></div>
+              <div class="col-xs-12"> <hr/> </div>
 
               <div class="col-xs-12">
                   <button @click="save()"
@@ -112,12 +124,25 @@ export default {
   methods: {
 
     getInput(input) {
-        const value = input.value;
-        const name  = input.name;
+
+        const value  = input.value;
+        const name   = input.name;
+        const target = input.event.target;
+        // console.log(next);
+
+        this.validateMessage = '';
+
         switch(name) {
            case 'email' :
                this.checkEmailIsEmpty(input)
                return true;
+          case 'repeat_password' :
+               if(value != this.user.password) {
+                  let message = 'Пароли не совпадают'
+                  this.showDataValidError(target, message)
+                  this.validateMessage = message;
+               }
+               break;
         }
         this.setInputValue('user', input);
     },
@@ -133,6 +158,12 @@ export default {
         }
         // setTimeout(() => {}, 2000)
         this.setInputValue('user', input);
+    },
+
+    showDataValidError(target, message) {
+        target.style.color = 'red'
+        let next = target.parentNode.childNodes[0];
+        next.innerHTML = message;
     },
 
     save() {
